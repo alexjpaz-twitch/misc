@@ -1,0 +1,58 @@
+<html>
+  <body>
+    <div id='main'>
+    </div>
+    <script>
+      (async function() {
+        var mainNode = document.querySelector('#main');
+
+        async function loadImages() {
+          const images = await fetch("./covers.txt")
+            .then(r => r.text())
+            .then(r => r.split("\n"))
+            .then(r => r.filter(r => r))
+
+          mainNode.innerHTML = '';
+
+          images.forEach((image) => {
+            const divNode = document.createElement('div');
+
+            divNode.innerHTML = `
+            <div class='figure'>
+              <img src='${image}' />
+              <p>${image}</p>
+            </div>
+            `;
+
+            mainNode.appendChild(divNode);
+          });
+
+        }
+
+        setInterval(loadImages, 5000);
+
+        loadImages();
+      })();
+    </script>
+  <style>
+      html, body { padding: 0; margin: 0; }
+
+      body { 
+        height: 100%; 
+        text-align: center; 
+        background-color: black; 
+        color: white;
+        font-family: sans-serif;
+      }
+
+      .figure {
+        border: 2px solid grey;
+        width: 50%;
+        margin: 20px auto;
+        padding: 10px 0;
+      }
+    </style>
+
+  </body>
+
+</html>
