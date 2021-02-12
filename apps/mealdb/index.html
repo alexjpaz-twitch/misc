@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body, html {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+      }
+      img {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <img id='strMealThumb' src='' style='display: none' />
+    <script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
+    <script>
+          const img = document.querySelector('#strMealThumb');
+
+          ComfyJS.onCommand = async ( user, command, message, flags, extra ) => {
+            if( command === "meal" || command === "food" ) {
+                    const rsp = await fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+                      .then(r => r.json())
+
+                    const meal = rsp.meals[0];
+
+                    img.src = meal.strMealThumb;
+                    img.style.display = '';
+
+                    setTimeout(() => {
+                      img.style.display = 'none';
+                    }, 5000);
+
+                    ComfyJS.Say(`${meal.strMeal} (${meal.strCategory}) - ${meal.strSource}`);
+            }
+          }
+
+          const searchParams = new URLSearchParams(location.search);
+
+          const channel = searchParams.get("channel");
+          const token = searchParams.get("token");
+
+          ComfyJS.Init(channel, token);
+    </script>
+  </body>
+</html>
