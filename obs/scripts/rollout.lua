@@ -90,19 +90,20 @@ local function onHotKey(action)
 	end
 end
 
+function handle_scene_change()
+    findSceneItems()
+    onHotKey("ROTATE_cw")
+end
 
-----------------------------------------------------------
-
+function handle_event(event)
+	if event == obs.OBS_FRONTEND_EVENT_SCENE_CHANGED then
+		handle_scene_change()
+	end
+end
 
 -- called on startup
 function script_load(settings)
-	for k, v in pairs(hotkeys) do
-		hk[k] = obs.obs_hotkey_register_frontend(k, v, function(pressed) if pressed then onHotKey(k) end end)
-		local hotkeyArray = obs.obs_data_get_array(settings, k)
-		obs.obs_hotkey_load(hk[k], hotkeyArray)
-		obs.obs_data_array_release(hotkeyArray)
-	end
-
+    obs.obs_frontend_add_event_callback(handle_event)
     script_update(settings)
 end
 
@@ -119,8 +120,7 @@ function script_update(settings)
 	interval = obs.obs_data_get_int(settings, "interval")
 	reset = obs.obs_data_get_int(settings, "reset")
 	debug = obs.obs_data_get_bool(settings, "debug")
-	findSceneItems()
-    onHotKey("ROTATE_cw")
+    handle_scene_change()
 end
 
 
@@ -134,9 +134,8 @@ end
 function script_properties()
 	local props = obs.obs_properties_create()
 	obs.obs_properties_add_text(props, "source", "Object to rotate", obs.OBS_TEXT_DEFAULT)
-	obs.obs_properties_add_int(props, "increment", "Increment", 1, 90, 1)
+	obs.obs_properties_add_int(props, "increment", "Increment", 0, 90, 1)
 	obs.obs_properties_add_int(props, "interval", "Interval (ms)", 2, 500, 1)
-	obs.obs_properties_add_int(props, "reset", "Reset angle", 0, 359, 1)
 	obs.obs_properties_add_bool(props, "debug", "Debug")
 	return props
 end
