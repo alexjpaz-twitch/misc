@@ -32,11 +32,9 @@ end
 
 
 local function findSceneItems(itemName)
-    print("1")
     sceneItems = {}
 	local src = obs.obs_get_source_by_name(currentSceneName())
 	if src then
-        print("2")
 		local scene = obs.obs_scene_from_source(src)
 		obs.obs_source_release(src)
 		if scene then
@@ -153,9 +151,4 @@ end
 
 -- save additional data not set by user
 function script_save(settings)
-	for k, v in pairs(hotkeys) do
-		local hotkeyArray = obs.obs_hotkey_save(hk[k])
-		obs.obs_data_set_array(settings, k, hotkeyArray)
-		obs.obs_data_array_release(hotkeyArray)
-	end
 end
