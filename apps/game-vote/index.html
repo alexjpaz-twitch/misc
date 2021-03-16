@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <base target="_top">
-  </head>
   <body>
     <a href="https://id.twitch.tv/oauth2/authorize?client_id=x6xrojaxnjpoigy4v9vo653vnel9nn&redirect_uri=https://script.google.com/macros/s/AKfycbyERaOm4yDvPDMPfhDcO0fQHB0FDpDdTI4MjooTb2YyjnASZ1UH0GkDjSofb8jbMw1Jdg/exec&response_type=id_token&scope=openid&claims=">Login with Twitch</a>
     <script>
@@ -11,7 +8,12 @@
 
         location.assign(`https://docs.google.com/forms/d/e/1FAIpQLSepxAXeFEsD77mfVo7dQGT4Gv1LW338cDa6mtxANCulj1cF1A/viewform?usp=pp_url&entry.926689361=${id_token}`);
       } else {
-        location.assign(`https://id.twitch.tv/oauth2/authorize?client_id=x6xrojaxnjpoigy4v9vo653vnel9nn&redirect_uri=https://script.google.com/macros/s/AKfycbyERaOm4yDvPDMPfhDcO0fQHB0FDpDdTI4MjooTb2YyjnASZ1UH0GkDjSofb8jbMw1Jdg/exec&response_type=id_token&scope=openid&claims=`);
+        const redirect = `https://id.twitch.tv/oauth2/authorize?client_id=x6xrojaxnjpoigy4v9vo653vnel9nn&redirect_uri=${location.href}&response_type=id_token&scope=openid&claims=`;
+        const link = document.createElement("a");
+        link.href = redirect;
+        link.innerHTML = "Click here to login to Twitch";
+        document.appendChild(link);
+        location.assign(redirect);
       }
     </script>
   </body>
