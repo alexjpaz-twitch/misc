@@ -61,7 +61,11 @@ end
 local function rotate()
     for k, sceneItem in pairs(sceneItems) do
         if sceneItem then
-            local r = obs.obs_sceneitem_get_rot(sceneItem) + increment * direction
+            local current_rot = obs.obs_sceneitem_get_rot(sceneItem)
+            local r = current_rot + increment * direction
+
+            r = r % 360
+
             obs.obs_sceneitem_set_rot(sceneItem, r)
         else
             obs.remove_current_callback()
