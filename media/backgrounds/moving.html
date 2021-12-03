@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body { margin: 0; padding: 0 }
+
+
+    img { height: 100%; width: 100%; }
+
+    @keyframes moving {
+      from {
+        transform: perspective(500px) translate3d(-10px, -10px, 0px);
+      }
+      to {
+        transform: perspective(500px) translate3d(20px, 20px, 300px);
+      }
+    }
+
+    img {
+      transition-property: transform;
+      transition-duration: 30s;
+    }
+
+  </style>
+</head>
+<body>
+  <img></img>
+  <script>
+    let params = new URLSearchParams(location.search);
+
+    const img = document.querySelector('img');
+
+    img.src = params.get('src');
+
+    function randomNumber(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+    const randomMove = () => {
+          const dz = randomNumber(100, 200);
+          const dx = Math.min(dz, randomNumber(-100, 100));
+          const dy = Math.min(dz, randomNumber(-50, 50));
+          img.style.transform = `perspective(500px) translate3d(${dx}px, ${dy}px, ${dz}px)`
+    };
+    
+    randomMove();
+
+    setInterval(randomMove, 1000);
+  </script>
+</body>
+</html>
