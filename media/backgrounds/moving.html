@@ -20,6 +20,7 @@
 
     img {
       transition-property: transform;
+      transition-delay: 0s;
       transition-duration: 30s;
     }
 
@@ -42,11 +43,13 @@
           const dx = Math.min(dz, randomNumber(-100, 100));
           const dy = Math.min(dz, randomNumber(-50, 50));
           img.style.transform = `perspective(500px) translate3d(${dx}px, ${dy}px, ${dz}px)`
+
+          setTimeout(randomMove, 60000);
     };
     
-    randomMove();
-
-    setInterval(randomMove, 1000);
+    setTimeout(() => {
+      randomMove();
+    }, 1000);
   </script>
 </body>
 </html>
