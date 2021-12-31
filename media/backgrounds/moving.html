@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    html, body { margin: 0; padding: 0 }
+    html, body { margin: 0; padding: 0; height: 100%; }
 
 
-    img { height: 100%; width: 100%; }
+    #images { height: 100%; width: 100%; }
 
     @keyframes moving {
       from {
@@ -18,22 +18,27 @@
       }
     }
 
-    img {
+    #images {
       transition-property: transform;
       transition-delay: 0s;
       transition-duration: 30s;
+      background-size: 100%;
+      background-position: center;
+      background-repeat: repeat;
     }
 
   </style>
 </head>
 <body>
-  <img></img>
+  <div id='images'></div>
   <script>
     let params = new URLSearchParams(location.search);
 
-    const img = document.querySelector('img');
+    const img = document.querySelector('#images');
 
     img.src = params.get('src');
+
+    // img.style.backgroundImage = `url(${img.src})`;
 
     function randomNumber(min, max) {
         return Math.random() * (max - min) + min;
