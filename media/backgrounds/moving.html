@@ -19,13 +19,14 @@
     }
 
     #images {
-      transition-property: transform;
+      transition-property: transform, background-image;
       transition-delay: 0s;
-      transition-duration: 30s;
+      transition-duration: 30s, 5s;
       background-size: 100%;
       background-position: center;
       background-repeat: repeat;
     }
+    
 
   </style>
 </head>
@@ -51,9 +52,40 @@
 
           setTimeout(randomMove, 60000);
     };
+
+    /**
+     * Shuffles array in place.
+     * @param {Array} a items An array containing the items.
+     */
+    function shuffle(a) {
+        var j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = a[i];
+            a[i] = a[j];
+            a[j] = x;
+        }
+        return a;
+    }
+
+    const shuffleUrls = () => {
+      const style = getComputedStyle(img);
+
+      const urls = style.backgroundImage
+        .replace(/;$/,'')
+        .split(',');
+
+      const newUrls = shuffle(urls);
+      console.log(newUrls)
+
+      img.style.backgroundImage = newUrls;
+
+      setTimeout(shuffleUrls, 10000);
+    };
     
     setTimeout(() => {
       randomMove();
+      shuffleUrls();
     }, 1000);
   </script>
 </body>
