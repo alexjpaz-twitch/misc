@@ -9,3 +9,8 @@ fields:
     min: 
     max: 
   label: commands
+- name: f
+  type: text
+  config:
+    required: false
+  label: f
