@@ -5,15 +5,20 @@ admin_path:
 webhook_url: 
 sections:
 - type: directory
+  path: data/earworm/commands
+  label: commands
+  create: all
+  match: "**/*"
+  new_doc_ext: ".json"
+  templates:
+  - foo
+- type: directory
   path: data/test
   label: foo
   create: all
   match: "**/*"
   templates:
   - foo2
-- type: document
-  path: data/earworm/trythese.json
-  label: Commands
 upload_dir: uploads
 public_path: "/uploads"
 front_matter_path: ''
