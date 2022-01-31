@@ -10,4 +10,4 @@ fields:
     max: 
   label: commands
 pages:
-- data/earworm/commands/trythese.json.json
+- data/earworm/commands/trythese.json
