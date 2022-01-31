@@ -1,5 +1,5 @@
 ---
-label: Foo
+label: commands
 hide_body: false
 fields:
 - name: commands
@@ -9,8 +9,3 @@ fields:
     min: 
     max: 
   label: commands
-- name: f
-  type: text
-  config:
-    required: false
-  label: f
