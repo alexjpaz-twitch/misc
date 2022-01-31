@@ -5,7 +5,7 @@ admin_path:
 webhook_url: 
 sections:
 - type: document
-  path: data/earworm/trythese.md
+  path: data/earworm/trythese.json
   label: Commands
 upload_dir: uploads
 public_path: "/uploads"
