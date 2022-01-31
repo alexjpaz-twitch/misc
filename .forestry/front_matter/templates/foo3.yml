@@ -1,4 +1,7 @@
 ---
 label: foo3
 hide_body: true
-fields: []
+fields:
+- name: d
+  type: boolean
+  label: d
