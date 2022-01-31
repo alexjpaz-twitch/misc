@@ -1,4 +1,11 @@
 ---
 label: foo2
 hide_body: false
-fields: []
+fields:
+- name: foo
+  type: list
+  config:
+    use_select: false
+    min: 
+    max: 
+  label: foo
