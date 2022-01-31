@@ -9,3 +9,5 @@ fields:
     min: 
     max: 
   label: commands
+pages:
+- data/earworm/commands/trythese.json.json

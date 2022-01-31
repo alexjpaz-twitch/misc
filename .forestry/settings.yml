@@ -9,7 +9,7 @@ sections:
   label: commands
   create: all
   match: "**/*"
-  new_doc_ext: ".json"
+  new_doc_ext: json
   templates:
   - foo
 - type: directory
