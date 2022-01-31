@@ -4,6 +4,13 @@ auto_deploy: false
 admin_path: 
 webhook_url: 
 sections:
+- type: directory
+  path: data/test
+  label: foo
+  create: all
+  match: "**/*"
+  templates:
+  - foo2
 - type: document
   path: data/earworm/trythese.json
   label: Commands
