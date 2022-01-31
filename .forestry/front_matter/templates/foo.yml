@@ -1,4 +1,11 @@
 ---
 label: Foo
 hide_body: false
-fields: []
+fields:
+- name: commands
+  type: list
+  config:
+    use_select: false
+    min: 
+    max: 
+  label: commands
