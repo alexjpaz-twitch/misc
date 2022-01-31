@@ -9,3 +9,5 @@ fields:
     min: 
     max: 
   label: foo
+pages:
+- data/test/f.md
