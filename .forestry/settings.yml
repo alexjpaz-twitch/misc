@@ -5,9 +5,8 @@ admin_path:
 webhook_url: 
 sections:
 - type: document
-  path: data/earworm/trythese.txt
+  path: data/earworm/trythese.md
   label: Commands
-  read_only: false
 upload_dir: uploads
 public_path: "/uploads"
 front_matter_path: ''
